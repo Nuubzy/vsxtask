@@ -10,17 +10,24 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:vsxtask.helloWorld"
+		"onCommand:vsxtask.helloWorld",
+		"onCommand:vsxtask.Pathing"
 	],
+	
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "vsxtask.helloWorld",
 				"title": "Hello World"
+			},
+			{
+				"command": "vsxtask.Pathing",
+				"title": "URI Path"
 			}
 		]
 	},
+
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
