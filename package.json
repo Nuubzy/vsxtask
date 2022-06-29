@@ -10,22 +10,37 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:vsxtask.helloWorld",
-		"onCommand:vsxtask.Pathing"
+		"onCommand:vsxtask.Welcome",
+		"onCommand:vsxtask.Pathing",
+		"onCommand:vsxtask.webPanel",
+		"onCommand:markdown.test"
 	],
 	
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "vsxtask.helloWorld",
-				"title": "Hello World"
+				"command": "vsxtask.Welcome",
+				"title": "Welcome"
 			},
 			{
 				"command": "vsxtask.Pathing",
 				"title": "URI Path"
+			},
+			{
+				"command": "markdown.test",
+        		"title": "Create new Kendo project..."
 			}
-		]
+		],
+		"menus": {
+			"explorer/context": [
+			  {
+				  "when": "isWindows",
+				  "command": "markdown.test",
+				  "group": "navigation"
+				}
+			]
+		  }
 	},
 
 	"scripts": {
