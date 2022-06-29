@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import * as HelloWorldPanel from "./panels/HelloWorldPanel";
 
 const channel = vscode.window.createOutputChannel("Kendo Output");
 channel.show(true);
@@ -13,7 +14,12 @@ export function activate(context: vscode.ExtensionContext) {
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "vsxtask" is now active!');
-
+	
+	const helloCommand = vscode.commands.registerCommand("vsxtask.helloWorld", () => {
+		HelloWorldPanel.HelloWorldPanel.render();
+	  });
+	
+	  context.subscriptions.push(helloCommand);
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json

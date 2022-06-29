@@ -10,6 +10,7 @@
 		"Other"
 	],
 	"activationEvents": [
+		"onCommand:vsxtask.helloWorld",
 		"onCommand:vsxtask.Welcome",
 		"onCommand:vsxtask.Pathing",
 		"onCommand:vsxtask.webPanel",
@@ -19,6 +20,10 @@
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
+			{
+				"command": "vsxtask.helloWorld",
+				"title": "Hello World"
+			},
 			{
 				"command": "vsxtask.Welcome",
 				"title": "Welcome"
