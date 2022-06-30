@@ -16,7 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "vsxtask" is now active!');
 	
 	const helloCommand = vscode.commands.registerCommand("vsxtask.helloWorld", () => {
-		HelloWorldPanel.HelloWorldPanel.render();
+		HelloWorldPanel.HelloWorldPanel.render(context.extensionUri);
 	  });
 	
 	  context.subscriptions.push(helloCommand);
