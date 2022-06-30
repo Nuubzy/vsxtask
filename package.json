@@ -10,7 +10,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:vsxtask.helloWorld",
+		"onCommand:vsxtask.helloWorld", 
 		"onCommand:vsxtask.Welcome",
 		"onCommand:vsxtask.Pathing",
 		"onCommand:vsxtask.webPanel",

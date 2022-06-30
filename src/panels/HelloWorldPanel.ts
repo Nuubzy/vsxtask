@@ -9,7 +9,8 @@ export class HelloWorldPanel {
   private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
     this._panel = panel;
     this._panel.onDidDispose(this.dispose, null, this._disposables);
-    this._panel.webview.html = this._getWebviewContent(this._panel.webview, extensionUri); //n2
+    this._panel.webview.html = this._getWebviewContent(this._panel.webview, extensionUri); // n2
+    this._setWebviewMessageListener(this._panel.webview); //eventlistener2
   }
   public static render(extensionUri: vscode.Uri) {
     if (HelloWorldPanel.currentPanel) {
@@ -36,8 +37,26 @@ export class HelloWorldPanel {
       }
     }
   }
+  //eventlistener addition
+  private _setWebviewMessageListener(webview: vscode.Webview) {
+    webview.onDidReceiveMessage(
+      (message: any) => {
+        const command = message.command;
+        const text = message.text;
+
+        switch (command) {
+          case "hello":
+            vscode.window.showInformationMessage(text);
+            return;
+        }
+      },
+      undefined,
+      this._disposables
+    );
+  }
   //change n1 here
   private _getWebviewContent(webview: vscode.Webview, extensionUri: vscode.Uri) {
+    const mainUri = getUri(webview, extensionUri, ["webview-ui", "main.js"]);
     const toolkitUri = getUri(webview, extensionUri, [
       "node_modules",
       "@vscode",
@@ -53,6 +72,7 @@ export class HelloWorldPanel {
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <script type="module" src="${toolkitUri}"></script>
+          <script type="module" src="${mainUri}"></script>
           <title>Hello World!</title>
         </head>
         <body>
